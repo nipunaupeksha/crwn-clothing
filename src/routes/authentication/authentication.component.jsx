@@ -24,8 +24,8 @@ const Authentication = () => {
       {/* <button onClick={logGoogleUser}>SignInWithPopup</button> */}
       {/* Google Redirect */}
       {/* <button onClick={signInWithGoogleRedirect}>SignInWithRedirect</button> */}
-      <SignUpForm />
       <SignInForm />
+      <SignUpForm />
     </div>
   )
 }
