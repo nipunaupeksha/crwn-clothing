@@ -1,7 +1,8 @@
 const options = {
-  arrowParens: 'avoid',
+  arrowParens: 'always',
   singleQuote: true,
   bracketSpacing: true,
+  bracketSameLine: true,
   endOfLine: 'lf',
   semi: false,
   tabWidth: 2,
