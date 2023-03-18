@@ -1,10 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import {
-  createUserDocumentFromAuth, signInwithGooglePopup,signInAuthUserWithEmailAndPassword
+  createUserDocumentFromAuth,
+  signInwithGooglePopup,
+  signInAuthUserWithEmailAndPassword
 } from '../../utils/firebase/firebase.utils'
 import FormInput from '../form-input/form-input.component'
 import Button from '../button/button.component'
-import "./sign-in-form.styles.scss"
+import './sign-in-form.styles.scss'
+import { UserContext } from '../../contexts/user.context'
 
 const defaultFormFields = {
   email: '',
@@ -13,7 +16,8 @@ const defaultFormFields = {
 
 const SignInForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields)
-  const {email, password } = formFields
+  const { email, password } = formFields
+  const { setCurrentUser } = useContext(UserContext)
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields)
@@ -22,10 +26,11 @@ const SignInForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault()
     try {
-      await signInAuthUserWithEmailAndPassword(email,password)
-      resetFormFields();
+      const { user } = await signInAuthUserWithEmailAndPassword(email, password)
+      setCurrentUser(user)
+      resetFormFields()
     } catch (error) {
-      switch(error.code){
+      switch (error.code) {
         case 'auth/wrong-password':
           alert('Incorrect password for email')
           break
@@ -48,6 +53,7 @@ const SignInForm = () => {
   const signInWithGoogle = async () => {
     const { user } = await signInwithGooglePopup()
     await createUserDocumentFromAuth(user)
+    // setCurrentUser(user)
   }
 
   return (
@@ -73,10 +79,12 @@ const SignInForm = () => {
           value={password}
         />
         <div className="buttons-container">
-        <Button type="submit">Sign In</Button>
-        <Button type="button" buttonType="google" onClick={signInWithGoogle}>Google Sign In</Button>
+          <Button type="submit">Sign In</Button>
+          <Button type="button" buttonType="google" onClick={signInWithGoogle}>
+            Google Sign In
+          </Button>
         </div>
-       </form>
+      </form>
     </div>
   )
 }
