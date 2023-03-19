@@ -47,7 +47,7 @@ const SignInForm = () => {
 
   // for google popup
   const signInWithGoogle = async () => {
-     await signInwithGooglePopup()
+    await signInwithGooglePopup()
   }
 
   return (
