@@ -1,5 +1,5 @@
 import React from 'react'
-import { FormInputLabel, Input, Group } from './form-input.styles';
+import { FormInputLabel, Input, Group } from './form-input.styles'
 
 const FormInput = ({ label, ...otherProps }) => {
   return (
@@ -11,7 +11,7 @@ const FormInput = ({ label, ...otherProps }) => {
         </FormInputLabel>
       )}
     </Group>
-  );
-};
+  )
+}
 
-export default FormInput;
+export default FormInput

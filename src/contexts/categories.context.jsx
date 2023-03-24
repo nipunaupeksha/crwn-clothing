@@ -1,3 +1,4 @@
+/* Deprecated - This is migrated to Redux */
 import { createContext, useState, useEffect } from 'react'
 // import SHOP_DATA from '../shop-data.js'
 // import { addCollectionAndDocuments } from '../utils/firebase/firebase.utils.js'
